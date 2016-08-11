@@ -24,13 +24,15 @@ our $END = "cog";
 our $DICT = ["hot","dot","dog","lot","log",];
 
 #--------------计算最短路径，并打印每种路径-------------
+#path_tree is a global hash in order to store all word in each path layer.
 our %path_tree ;
+
 my @start_array = ($START);
 my $len = 2 + &construct_shortest_path (\@start_array,$DICT,0); #起始为0层。
 print "shortest path length is $len\n\n"; 
 &print_shortest_path($END);
 
-#---------返回最短路径的长度(首尾不算入)。
+#---------返回最短路径的长度(首尾不算入)。并且在执行函数的过程中，会把所有路径都记录到全局变量%path_tree中.
 sub construct_shortest_path()
 {
 	my ($start_array, $dict, $layer) = @_;
@@ -81,6 +83,7 @@ sub print_shortest_path ()
 	my ($last_word,$path) = @_;
 	defined $path or $path = [];
 	
+	#notice path_tree is a global hash, and it will be construct when finding path.
 	if (exists $path_tree{$last_word}) { 
 		foreach (@{$path_tree{$last_word}}) {
 			push @{$path}, $last_word;
