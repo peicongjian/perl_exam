@@ -17,10 +17,10 @@
 #*****本题目的：了解perl的二元数组，递归函数等用法*****#
 #思路： 沿着方阵四条边遍历一圈，标记出所有'O'，以及与之相邻的'O',剩下的'O'就是被'X'包围的.
 my $row = 4;
-my $col = 7;
+my $col = 4;
 my $ini_board = [	['X','X','X','X'],
-	            	 	['X','O','O','X'],
-	            	 	['X','X','O','X'],
+	            	['X','O','O','X'],
+	            	['X','X','O','X'],
 	                ['X','O','X','X'] ];
 print "init board is :\n\n";
 &board_print($ini_board,$row,$col); 
